@@ -10,10 +10,10 @@ spec:
     repoURL: https://charts.bitnami.com/bitnami
     chart: mlflow
     targetRevision: 1.4.0
+
     helm:
-      values: |
-        service:
-          type: ClusterIP
+      valueFiles:
+        - values/mlflow-values.yaml
 
   destination:
     server: https://kubernetes.default.svc

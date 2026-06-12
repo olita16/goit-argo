@@ -1,0 +1,31 @@
+service:
+  type: ClusterIP
+  port: 5000
+
+auth:
+  enabled: false
+
+postgresql:
+  enabled: false
+
+mysql:
+  enabled: false
+
+minio:
+  enabled: false
+
+tracking:
+  persistence:
+    enabled: false
+
+run:
+  persistence:
+    enabled: false
+
+backendStore:
+  defaultSqlitePath: /tmp/mlflow.db
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 512Mi
