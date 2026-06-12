@@ -13,7 +13,7 @@ spec:
 
     helm:
       valueFiles:
-        - values/mlflow-values.yaml
+        - namespaces/application/mlflow-values.yaml
 
   destination:
     server: https://kubernetes.default.svc

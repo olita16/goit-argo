@@ -2,6 +2,8 @@ service:
   type: ClusterIP
   port: 5000
 
+defaultArtifactRoot: file:///mlruns
+
 auth:
   enabled: false
 
@@ -14,16 +16,12 @@ mysql:
 minio:
   enabled: false
 
+backendStore:
+  databaseConnectionCheck: false
+
 tracking:
   persistence:
     enabled: false
-
-run:
-  persistence:
-    enabled: false
-
-backendStore:
-  defaultSqlitePath: /tmp/mlflow.db
 
 resources:
   requests:
