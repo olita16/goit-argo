@@ -1,4 +1,3 @@
-
 service:
   type: ClusterIP
   port: 5000
@@ -6,9 +5,12 @@ service:
 auth:
   enabled: false
 
+# SQLite backend (ВАЖЛИВО для твого ДЗ)
 backendStore:
   defaultSqlitePath: /tmp/mlflow.db
-  databaseConnectionCheck: false
+
+artifactRoot:
+  defaultArtifactRoot: file:///mlruns
 
 postgresql:
   enabled: false
@@ -19,11 +21,13 @@ mysql:
 minio:
   enabled: false
 
-tracking:
-  persistence:
-    enabled: false
-
 resources:
   requests:
     cpu: 100m
     memory: 512Mi
+  limits:
+    cpu: 200m
+    memory: 1Gi
+
+persistence:
+  enabled: false
