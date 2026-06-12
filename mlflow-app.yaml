@@ -16,6 +16,19 @@ spec:
         service:
           type: ClusterIP
 
+        minio:
+          persistence:
+            enabled: false
+
+        postgresql:
+          primary:
+            persistence:
+              enabled: false
+
+        tracking:
+          persistence:
+            enabled: false
+
   destination:
     server: https://kubernetes.default.svc
     namespace: mlflow
@@ -25,4 +38,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true 
+      - CreateNamespace=true
