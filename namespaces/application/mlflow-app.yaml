@@ -16,15 +16,22 @@ spec:
         service:
           type: ClusterIP
 
-        backendStore:
-          databaseType: sqlite
-          defaultSqlitePath: /tmp/mlflow.db
-
         postgresql:
           enabled: false
 
         mysql:
           enabled: false
+
+        minio:
+          enabled: false
+
+        tracking:
+          persistence:
+            enabled: false
+
+        backendStore:
+          databaseType: sqlite
+          defaultSqlitePath: /tmp/mlflow.db
 
         resources:
           requests:
