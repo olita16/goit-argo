@@ -1,6 +1,8 @@
-service:
-  type: ClusterIP
-  port: 5000
+helm:
+  values:
+   service:
+   type: ClusterIP
+   port: 5000
 
 defaultArtifactRoot: file:///mlruns
 
