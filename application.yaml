@@ -6,13 +6,13 @@ metadata:
 spec:
   project: default
 
-  source:
-    repoURL: https://community-charts.github.io/helm-charts
-    chart: mlflow
-    targetRevision: 1.8.5
-    helm:
-      valueFiles:
-        - values/mlflow-values.yaml
+source:
+  repoURL: https://community-charts.github.io/helm-charts
+  chart: mlflow
+  targetRevision: 1.8.5
+  helm:
+    valueFiles:
+      - values/mlflow-values.yaml
 
   destination:
     server: https://kubernetes.default.svc

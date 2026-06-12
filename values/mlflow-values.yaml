@@ -21,14 +21,3 @@ resources:
   requests:
     cpu: 100m
     memory: 512Mi
-
-strategy:
-  type: Recreate
-
-extraVolumes:
-  - name: mlflow-data
-    emptyDir: {}
-
-extraVolumeMounts:
-  - name: mlflow-data
-    mountPath: /mlflow/data
