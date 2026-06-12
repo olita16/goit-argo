@@ -5,29 +5,30 @@ service:
 auth:
   enabled: false
 
-# SQLite backend (ВАЖЛИВО для твого ДЗ)
-backendStore:
-  defaultSqlitePath: /tmp/mlflow.db
-
-artifactRoot:
-  defaultArtifactRoot: file:///mlruns
-
 postgresql:
   enabled: false
 
 mysql:
   enabled: false
 
-minio:
-  enabled: false
+backendStore:
+  defaultSqlitePath: /mlflow/data/mlflow.db
+
+artifactRoot:
+  defaultArtifactRoot: file:///mlflow/data/artifacts
 
 resources:
   requests:
     cpu: 100m
     memory: 512Mi
-  limits:
-    cpu: 200m
-    memory: 1Gi
 
-persistence:
-  enabled: false
+strategy:
+  type: Recreate
+
+extraVolumes:
+  - name: mlflow-data
+    emptyDir: {}
+
+extraVolumeMounts:
+  - name: mlflow-data
+    mountPath: /mlflow/data

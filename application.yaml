@@ -7,41 +7,12 @@ spec:
   project: default
 
   source:
-    repoURL: https://charts.bitnami.com/bitnami
+    repoURL: https://community-charts.github.io/helm-charts
     chart: mlflow
-    targetRevision: 1.4.0
-
+    targetRevision: 1.8.5
     helm:
-      values: |
-        service:
-          type: ClusterIP
-          port: 5000
-
-        defaultArtifactRoot: file:///mlruns
-
-        auth:
-          enabled: false
-
-        postgresql:
-          enabled: false
-
-        mysql:
-          enabled: false
-
-        minio:
-          enabled: false
-
-        backendStore:
-          databaseConnectionCheck: false
-
-        tracking:
-          persistence:
-            enabled: false
-
-        resources:
-          requests:
-            cpu: 100m
-            memory: 512Mi
+      valueFiles:
+        - values/mlflow-values.yaml
 
   destination:
     server: https://kubernetes.default.svc
