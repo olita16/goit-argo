@@ -10,7 +10,6 @@ spec:
     repoURL: https://charts.bitnami.com/bitnami
     chart: mlflow
     targetRevision: 1.4.0
-
     helm:
       values: |
         service:
@@ -25,4 +24,4 @@ spec:
       prune: true
       selfHeal: true
     syncOptions:
-      - CreateNamespace=true 
+      - CreateNamespace=true
