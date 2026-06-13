@@ -24,10 +24,10 @@ artifactRoot:
 
 resources:
   requests:
-    cpu: 200m
+    cpu: 250m
     memory: 512Mi
   limits:
-    memory: 1.5Gi
+    memory: 1Gi
 
 livenessProbe:
   initialDelaySeconds: 60
