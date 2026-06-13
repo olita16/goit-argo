@@ -44,6 +44,3 @@ readinessProbe:
 image:
   repository: burakince/mlflow
   tag: 3.13.0
-
-extraArgs:
-  workers: 1
