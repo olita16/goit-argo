@@ -24,10 +24,10 @@ artifactRoot:
 
 resources:
   requests:
-    cpu: 200m
-    memory: 384Mi
+    cpu: 100m
+    memory: 256Mi
   limits:
-    memory: 768Mi
+    memory: 512Mi
 
 livenessProbe:
   initialDelaySeconds: 60
@@ -44,3 +44,6 @@ readinessProbe:
 image:
   repository: burakince/mlflow
   tag: 3.13.0
+
+extraArgs:
+  workers: 1
