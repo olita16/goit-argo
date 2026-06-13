@@ -6,18 +6,23 @@ metadata:
 spec:
   project: default
 
-  source:
-    repoURL: https://community-charts.github.io/helm-charts
-    chart: mlflow
-    targetRevision: 1.8.5
+  sources:
+    # Helm chart
+    - repoURL: https://community-charts.github.io/helm-charts
+      chart: mlflow
+      targetRevision: 1.8.5
+      helm:
+        valueFiles:
+          - $values/values/mlflow-values.yaml
 
-    helm:
-      valueFiles:
-        - mlflow-values.yaml
+    # Git repo (твій values файл)
+    - repoURL: https://github.com/olita16/goit-argo.git
+      targetRevision: main
+      ref: values
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: application
+    namespace: mlflow
 
   syncPolicy:
     automated:

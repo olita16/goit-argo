@@ -1,6 +1,7 @@
 replicaCount: 1
 
 service:
+  enabled: true
   type: ClusterIP
   port: 5000
 
@@ -29,13 +30,13 @@ resources:
     memory: 768Mi
 
 livenessProbe:
-  initialDelaySeconds: 120
+  initialDelaySeconds: 60
   timeoutSeconds: 10
   periodSeconds: 30
   failureThreshold: 10
 
 readinessProbe:
-  initialDelaySeconds: 120
+  initialDelaySeconds: 60
   timeoutSeconds: 10
   periodSeconds: 30
   failureThreshold: 10
