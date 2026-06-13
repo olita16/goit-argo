@@ -12,55 +12,8 @@ spec:
     targetRevision: 1.8.5
 
     helm:
-      values: |
-        replicaCount: 1
-
-      service:
-        type: ClusterIP
-        port: 5000
-
-      auth:
-        enabled: false
-
-      postgresql:
-        enabled: false
-
-      mysql:
-        enabled: false
-
-      backendStore:
-        defaultSqlitePath: /tmp/mlflow.db
-        databaseConnectionCheck: false
-        databaseMigration: true
-
-      artifactRoot:
-        defaultArtifactsDestination: /tmp/mlartifacts
-
-      
-      resources:
-        requests:
-          cpu: 200m
-          memory: 384Mi
-        limits:
-          memory: 768Mi
-
-      
-        livenessProbe:
-          initialDelaySeconds: 120
-          timeoutSeconds: 10
-          periodSeconds: 30
-          failureThreshold: 10
-
-        readinessProbe:
-          initialDelaySeconds: 120
-          timeoutSeconds: 10
-          periodSeconds: 30
-          failureThreshold: 10
-
-    
-        extraEnv:
-          - name: MLFLOW_SERVER_HOST
-            value: "0.0.0.0"
+      valueFiles:
+        - mlflow-values.yaml
 
   destination:
     server: https://kubernetes.default.svc
