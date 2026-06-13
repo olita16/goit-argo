@@ -17,7 +17,7 @@ mysql:
 backendStore:
   defaultSqlitePath: /tmp/mlflow.db
   databaseConnectionCheck: false
-  databaseMigration: true
+  databaseMigration: false
 
 artifactRoot:
   defaultArtifactsDestination: /tmp/mlartifacts
@@ -30,20 +30,23 @@ resources:
     memory: 512Mi
 
 livenessProbe:
-  initialDelaySeconds: 60
+  initialDelaySeconds: 90
   timeoutSeconds: 10
   periodSeconds: 30
-  failureThreshold: 10
+  failureThreshold: 5
 
 readinessProbe:
   initialDelaySeconds: 60
   timeoutSeconds: 10
-  periodSeconds: 30
-  failureThreshold: 10
+  periodSeconds: 20
+  failureThreshold: 5
 
 image:
   repository: burakince/mlflow
   tag: 3.13.0
 
 extraArgs:
-  workers: 1
+  workers: "1" 
+
+extraEnvVars:
+  MLFLOW_DISABLE_ENV_MANAGER: "true"
