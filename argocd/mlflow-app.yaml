@@ -2,18 +2,65 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: mlflow
-  namespace: infra-tools   # твій ArgoCD namespace
+  namespace: infra-tools
 spec:
   project: default
 
   source:
     repoURL: https://community-charts.github.io/helm-charts
     chart: mlflow
-    targetRevision: 1.8.5   # з твого опису
+    targetRevision: 1.8.5
 
     helm:
-      valueFiles:
-        - values/mlflow-values.yaml
+      values: |
+        replicaCount: 1
+
+      service:
+        type: ClusterIP
+        port: 5000
+
+      auth:
+        enabled: false
+
+      postgresql:
+        enabled: false
+
+      mysql:
+        enabled: false
+
+      backendStore:
+        defaultSqlitePath: /tmp/mlflow.db
+        databaseConnectionCheck: false
+        databaseMigration: true
+
+      artifactRoot:
+        defaultArtifactsDestination: /tmp/mlartifacts
+
+      
+      resources:
+        requests:
+          cpu: 200m
+          memory: 384Mi
+        limits:
+          memory: 768Mi
+
+      
+        livenessProbe:
+          initialDelaySeconds: 120
+          timeoutSeconds: 10
+          periodSeconds: 30
+          failureThreshold: 10
+
+        readinessProbe:
+          initialDelaySeconds: 120
+          timeoutSeconds: 10
+          periodSeconds: 30
+          failureThreshold: 10
+
+    
+        extraEnv:
+          - name: MLFLOW_SERVER_HOST
+            value: "0.0.0.0"
 
   destination:
     server: https://kubernetes.default.svc

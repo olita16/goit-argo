@@ -1,28 +1,31 @@
-service:
-  type: ClusterIP
-  port: 80
+helm:
+  values: |
+    replicaCount: 1
 
-auth:
-  enabled: false
+  service:
+    type: ClusterIP
+    port: 80
 
-postgresql:
-  enabled: false
+  auth:
+    enabled: false
 
-mysql:
-  enabled: false
+  postgresql:
+    enabled: false
 
-backendStore:
-  databaseConnectionCheck: false
-  databaseMigration: false
-  defaultSqlitePath: "/tmp/mlflow.db"
+  mysql:
+    enabled: false
 
-artifactRoot:
-  defaultArtifactsDestination: "/tmp/mlartifacts"
+  backendStore:
+    databaseConnectionCheck: false
+    databaseMigration: false
+    defaultSqlitePath: /tmp/mlflow.db
 
-resources:
-  requests:
-    cpu: 100m
-    memory: 512Mi
-  limits:
-    cpu: 500m
-    memory: 1Gi
+  artifactRoot:
+    defaultArtifactsDestination: /tmp/mlartifacts
+
+  resources:
+    requests:
+      cpu: 200m
+      memory: 384Mi
+    limits:
+      memory: 768Mi
