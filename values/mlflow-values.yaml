@@ -42,6 +42,8 @@ readinessProbe:
   failureThreshold: 10
 
 image:
-  repository: mlflow/mlflow
-  tag: 2.10.2
-  pullPolicy: IfNotPresent
+  repository: burakince/mlflow
+  tag: 3.13.0
+
+extraArgs:
+  workers: 1
