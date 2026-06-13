@@ -45,6 +45,3 @@ image:
   repository: mlflow/mlflow
   tag: 2.10.2
   pullPolicy: IfNotPresent
-
-extraArgs:
-  workers: 1
